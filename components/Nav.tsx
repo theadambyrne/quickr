@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import Head from "next/head";
 
 import { firebaseAuth, githubProvider } from "../lib/firebase";
 import { signInWithPopup } from "firebase/auth";
@@ -19,22 +18,6 @@ function Nav() {
 	};
 	return (
 		<>
-			<Head>
-				<title>Quickr</title>
-				<meta name="title" content="Quickr" />
-				<meta
-					name="description"
-					content="Create landing pages quickly with no code"
-				/>
-				<meta
-					name="keywords"
-					content="nocode, landing page, freelance, web design, "
-				/>
-				<meta name="robots" content="index, follow" />
-				<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-				<meta name="language" content="English" />
-				<meta name="author" content="Adam Byrne" />
-			</Head>
 			<nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-gray-800 mb-3">
 				<div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
 					<div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
