@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import Head from "next/head";
 
 import { firebaseAuth, githubProvider } from "../lib/firebase";
 import { signInWithPopup } from "firebase/auth";
@@ -17,73 +18,91 @@ function Nav() {
 		await firebaseAuth.signOut();
 	};
 	return (
-		<nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-gray-800 mb-3">
-			<div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
-				<div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-					<Link href="/" passHref>
-						<a className="text-lg font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white">
-							QUICKR
-						</a>
-					</Link>
+		<>
+			<Head>
+				<title>Quickr</title>
+				<meta name="title" content="Quickr" />
+				<meta
+					name="description"
+					content="Create landing pages quickly with no code"
+				/>
+				<meta
+					name="keywords"
+					content="nocode, landing page, freelance, web design, "
+				/>
+				<meta name="robots" content="index, follow" />
+				<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+				<meta name="language" content="English" />
+				<meta name="author" content="Adam Byrne" />
+			</Head>
+			<nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-gray-800 mb-3">
+				<div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
+					<div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+						<Link href="/" passHref>
+							<a className="text-lg font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white">
+								QUICKR
+							</a>
+						</Link>
 
-					<button
-						className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
-						type="button"
-						onClick={() => setNavbarOpen(!navbarOpen)}
+						<button
+							className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+							type="button"
+							onClick={() => setNavbarOpen(!navbarOpen)}
+						>
+							&#11048;
+						</button>
+					</div>
+					<div
+						className={
+							"lg:flex flex-grow items-center" +
+							(navbarOpen ? " flex" : " hidden")
+						}
+						id="example-navbar-danger"
 					>
-						&#11048;
-					</button>
-				</div>
-				<div
-					className={
-						"lg:flex flex-grow items-center" +
-						(navbarOpen ? " flex" : " hidden")
-					}
-					id="example-navbar-danger"
-				>
-					<ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-						{user && (
-							<>
-								<li className="nav-item">
-									<Link href="/studio" passHref>
-										<a className="px-3 py-2 flex items-center text-sm uppercase  leading-snug text-white hover:opacity-75">
-											Studio
-										</a>
-									</Link>
-								</li>
-								<li className="nav-item">
-									<Link href="/profile" passHref>
-										<a className="px-3 py-2 flex items-center text-sm uppercase  leading-snug text-white hover:opacity-75">
-											Profile
-										</a>
-									</Link>
-								</li>
-							</>
-						)}
+						<ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
+							{user && (
+								<>
+									<li className="nav-item">
+										<Link href="/studio" passHref>
+											<a className="px-3 py-2 flex items-center text-sm uppercase  leading-snug text-white hover:opacity-75">
+												Studio
+											</a>
+										</Link>
+									</li>
+									<li className="nav-item">
+										<Link href="/profile" passHref>
+											<a className="px-3 py-2 flex items-center text-sm uppercase  leading-snug text-white hover:opacity-75">
+												Profile
+											</a>
+										</Link>
+									</li>
+								</>
+							)}
 
-						<li className="nav-item">
-							{user ? (
-								<Link href="/" passHref>
+							<li className="nav-item">
+								{user ? (
+									<Link href="/" passHref>
+										<a
+											onClick={handleLogout}
+											className="px-3 py-2 flex items-center text-sm uppercase leading-snug text-white hover:opacity-75"
+										>
+											Logout
+										</a>
+									</Link>
+								) : (
 									<a
-										onClick={handleLogout}
+										onClick={handleLogin}
 										className="px-3 py-2 flex items-center text-sm uppercase leading-snug text-white hover:opacity-75"
 									>
-										Logout
+										Login with GitHub
 									</a>
-								</Link>
-							) : (
-								<a
-									onClick={handleLogin}
-									className="px-3 py-2 flex items-center text-sm uppercase leading-snug text-white hover:opacity-75"
-								>
-									Login with GitHub
-								</a>
-							)}
-						</li>
-					</ul>
+								)}
+							</li>
+						</ul>
+					</div>
 				</div>
-			</div>
-		</nav>
+			</nav>
+		</>
 	);
 }
 
