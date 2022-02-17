@@ -31,7 +31,7 @@ function Nav() {
 						type="button"
 						onClick={() => setNavbarOpen(!navbarOpen)}
 					>
-						{navbarOpen ? <span>&uarr;</span> : <span>&darr;</span>}
+						&#11048;
 					</button>
 				</div>
 				<div
@@ -63,7 +63,7 @@ function Nav() {
 
 						<li className="nav-item">
 							{user ? (
-								<Link href="/login" passHref>
+								<Link href="/" passHref>
 									<a
 										onClick={handleLogout}
 										className="px-3 py-2 flex items-center text-sm uppercase leading-snug text-white hover:opacity-75"
