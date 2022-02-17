@@ -23,7 +23,7 @@ const Studio: NextPage = (ctx: any) => {
 					content="nocode, landing page, freelance, web design, "
 				/>
 				<meta name="robots" content="index, follow" />
-				<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+				<meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
 				<meta name="language" content="English" />
 				<meta name="author" content="Adam Byrne" />
 			</Head>
