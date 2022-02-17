@@ -44,22 +44,13 @@ function Nav() {
 					>
 						<ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
 							{user && (
-								<>
-									<li className="nav-item">
-										<Link href="/studio" passHref>
-											<a className="px-3 py-2 flex items-center text-sm uppercase  leading-snug text-white hover:opacity-75">
-												Studio
-											</a>
-										</Link>
-									</li>
-									<li className="nav-item">
-										<Link href="/profile" passHref>
-											<a className="px-3 py-2 flex items-center text-sm uppercase  leading-snug text-white hover:opacity-75">
-												Profile
-											</a>
-										</Link>
-									</li>
-								</>
+								<li className="nav-item">
+									<Link href="/studio" passHref>
+										<a className="px-3 py-2 flex items-center text-sm uppercase  leading-snug text-white hover:opacity-75">
+											Studio
+										</a>
+									</Link>
+								</li>
 							)}
 
 							<li className="nav-item">

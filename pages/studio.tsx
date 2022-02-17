@@ -1,12 +1,13 @@
 import type { NextPage } from "next";
-
-import Nav from "../components/Nav";
+import Head from "next/head";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { firebaseAuth } from "../lib/firebase";
-import Head from "next/head";
 
-const Studio: NextPage = (ctx: any) => {
+import Nav from "../components/Nav";
+import AddNewSiteButton from "../components/AddNewSiteButton";
+
+const Studio: NextPage = () => {
 	const [user, loading] = useAuthState(firebaseAuth);
 
 	return (
@@ -28,26 +29,37 @@ const Studio: NextPage = (ctx: any) => {
 				<meta name="author" content="Adam Byrne" />
 			</Head>
 			<Nav />
-			{user ? (
-				<>
-					<header className="bg-white shadow">
-						<div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-							<h1 className="text-3xl font-bold text-gray-900">
-								{loading ? "loading..." : user?.displayName}&apos;s Studio
-							</h1>
-						</div>
-					</header>
-					<main>
-						<div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-							<div className="px-4 py-6 sm:px-0">
-								<div className="border-4 border-dashed border-gray-200 rounded-lg h-96"></div>
+
+			<header className="bg-white shadow">
+				<div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex items-center space-x-5">
+					{user ? (
+						<>
+							<img
+								alt={user?.displayName!}
+								src={user?.photoURL!}
+								width={50}
+								height={50}
+							/>
+							<h1 className="text-3xl font-bold text-gray-900 ">Studio</h1>
+						</>
+					) : (
+						<h1 className="text-3xl font-bold text-gray-900 ">
+							Login to access your Studio
+						</h1>
+					)}
+				</div>
+			</header>
+			<main>
+				<div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 ">
+					<div className="px-4 py-6 sm:px-0">
+						<div className="border-4 border-dashed border-gray-200 rounded-lg h-96 shadow-inner">
+							<div className="flex flex-wrap">
+								<AddNewSiteButton />
 							</div>
 						</div>
-					</main>
-				</>
-			) : (
-				<p>Login please</p>
-			)}
+					</div>
+				</div>
+			</main>
 		</>
 	);
 };
